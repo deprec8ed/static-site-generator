@@ -1,9 +1,15 @@
 from copy_static import copy_dir_recursive
-from markdown_to_html import markdown_to_html_node
+from generate_page import generate_page
 
 
 def main():
     copy_dir_recursive("static", "public")
+
+    generate_page(
+        "content/index.md",
+        "template.html",
+        "public/index.html"
+    )
 
 
 if __name__ == "__main__":
