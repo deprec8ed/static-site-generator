@@ -2,12 +2,7 @@ import os
 from generate_page import generate_page
 
 
-def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
-    """
-    Recursively walks content directory and generates HTML files
-    preserving folder structure inside public/
-    """
-
+def generate_pages_recursive(dir_path_content, template_path, dest_dir_path, basepath):
     items = os.listdir(dir_path_content)
 
     for item in items:
@@ -20,7 +15,8 @@ def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
 
                 print(f"Generating page: {src_path} → {dest_path}")
 
-                generate_page(src_path, template_path, dest_path)
+                generate_page(src_path, template_path, dest_path, basepath)
 
         else:
-            generate_pages_recursive(src_path, template_path, dest_path)
+            generate_pages_recursive(
+                src_path, template_path, dest_path, basepath)
